@@ -6,6 +6,8 @@ require('./sourcemap-register.js');module.exports =
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const core = __nccwpck_require__(186);
+const exec = __nccwpck_require__(526);
+
 const wait = __nccwpck_require__(258);
 
 
@@ -20,6 +22,8 @@ async function run() {
     core.info((new Date()).toTimeString());
 
     core.setOutput('time', new Date().toTimeString());
+    core.debug('exec test');
+    await exec.exec('ls', ['-la']);
   } catch (error) {
     core.setFailed(error.message);
   }
@@ -436,6 +440,14 @@ let wait = function (milliseconds) {
 };
 
 module.exports = wait;
+
+
+/***/ }),
+
+/***/ 526:
+/***/ ((module) => {
+
+module.exports = eval("require")("@actions/exec");
 
 
 /***/ }),
