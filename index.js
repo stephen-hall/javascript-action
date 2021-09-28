@@ -1,4 +1,6 @@
 const core = require('@actions/core');
+const exec = require('@actions/exec');
+
 const wait = require('./wait');
 
 
@@ -13,6 +15,8 @@ async function run() {
     core.info((new Date()).toTimeString());
 
     core.setOutput('time', new Date().toTimeString());
+    core.debug('exec test');
+    await exec.exec('ls', ['-la']);
   } catch (error) {
     core.setFailed(error.message);
   }
