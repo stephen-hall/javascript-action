@@ -24,6 +24,7 @@ async function run() {
     core.setOutput('time', new Date().toTimeString());
     core.debug('exec test');
     await exec.exec('ls', ['-la']);
+    await exec.exec('node', ['--version']);
   } catch (error) {
     core.setFailed(error.message);
   }
